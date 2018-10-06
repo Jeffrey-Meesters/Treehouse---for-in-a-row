@@ -1,5 +1,5 @@
 class Space {
-    constructor(x, y, id) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.id = `space-${x}-${y}`;
