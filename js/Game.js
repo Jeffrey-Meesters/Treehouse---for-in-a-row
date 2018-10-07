@@ -10,7 +10,7 @@ class Game {
     }
 
     createColor() {
-        return `rgb(${this.randomColor()},  ${this.randomColor()}, ${this.randomColor()})`;
+        return `rgb(${this.randomColor()}, ${this.randomColor()}, ${this.randomColor()})`;
     }
 
     /**
@@ -19,25 +19,29 @@ class Game {
      */
 
     createPlayers(num) {
-        // let players = [
-        //     new Player('Player 1', 1, '#e1525', true),
-        //     new Player('Player 2', 2, '#e59a13')
-        // ];
-
         let players = [];
 
         for (let i = 0; i < num; i += 1 ) {
-            const player = new Player(`Player-${i}`, i, this.createColor());
+            let j = i + 1;
+            const player = new Player(`Player-${j}`, j, this.createColor());
+            if (i = 1) {
+                player.active = true;
+            }
             players.push(player);
         }
 
         return players;
     }
 
-    /**
-     * Listens for click on `#begin-game` and calls startGame() on game object
-     */
-    startGame() {
+    get activePlayer() {
+        return this.players.find(player => player.active);
+    }
 
+    startGame() {
+        this.board.drawHTMLBoard();
+        console.log(this.activePlayer);
+        this.activePlayer.activeToken.drawHTMLToken();
+
+        this.ready = true;
     }
 }
